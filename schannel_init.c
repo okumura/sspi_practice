@@ -74,6 +74,7 @@ void print_client_hello(unsigned char *pbuf) {
 int main(int argc, TCHAR** argv) {
 	TCHAR *hostname = _T("localhost");
 	SECURITY_STATUS s;
+	SCHANNEL_CRED cred;
 	CredHandle handle;
 	TimeStamp tsExpiry;
 	CtxtHandle ctxtHandle;
@@ -81,12 +82,17 @@ int main(int argc, TCHAR** argv) {
 	SecBuffer sendBuffer;
 	SecBufferDesc outBufferDesc;
 	
+	ZeroMemory(&cred, sizeof(cred));
+	cred.dwVersion = SCHANNEL_CRED_VERSION;
+	cred.grbitEnabledProtocols = SP_PROT_TLS1_CLIENT;
+	cred.dwFlags = SCH_CRED_AUTO_CRED_VALIDATION | SCH_CRED_USE_DEFAULT_CREDS;
+	
 	s = AcquireCredentialsHandle(
 		NULL,                 /* should be NULL for Schannel. */
 		UNISP_NAME,           /* specify it for Schannel. */
 		SECPKG_CRED_OUTBOUND, /* for server, specify SECPKG_CRED_INBOUND */
 		NULL,                 /* should be NULL for Schannel. */
-		NULL,                 /* can specify PSCHANNEL_CRED. */
+		&cred,                /* can specify PSCHANNEL_CRED. */
 		NULL,                 /* should be NULL for Schannel. */
 		NULL,                 /* should be NULL for Schannel. */
 		&handle,
