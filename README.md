@@ -5,13 +5,13 @@
 ## 含まれるファイル
 
 1.  **`enum_sec_pkgs.c`**
-    *   システムで利用可能なセキュリティパッケージを列挙して表示します。
-    *   `EnumerateSecurityPackages` 関数の使用方法を示します。
+  *   システムで利用可能なセキュリティパッケージを列挙して表示します。
+  *   `EnumerateSecurityPackages` 関数の使用方法を示します。
 
 2.  **`schannel_init.c`**
-    *   Schannel を使用してクライアント側のTLSハンドシェイクを開始する方法を示します。
-    *   生成された ClientHello メッセージを解析し、その内容（バージョン、暗号スイート、拡張機能など）を表示する `print_client_hello` 関数が含まれています。
-    *   `AcquireCredentialsHandle` および `InitializeSecurityContext` 関数の基本的な使用方法を示します。
+  *   Schannel を使用してクライアント側のTLSハンドシェイクを開始する方法を示します。
+  *   生成された ClientHello メッセージを解析し、その内容（バージョン、暗号スイート、拡張機能など）を表示する `print_client_hello` 関数が含まれています。
+  *   `AcquireCredentialsHandle` および `InitializeSecurityContext` 関数の基本的な使用方法を示します。
 
 ## ビルドと実行
 
@@ -35,6 +35,6 @@ gcc schannel_init.c -o schannel_init.exe -lsecur32
 
 ## 注意事項
 
-*   これらのコードは Windows 専用です。
-*   Schannel の機能は、実行している Windows のバージョンによって異なる場合があります。
-*   エラーハンドリングは最小限です。実際のアプリケーションでは、より堅牢なエラーチェックが必要です。
+* これらのコードは Windows 専用です。
+* Schannel の機能は、実行している Windows のバージョンによって異なる場合があります。
+* エラーハンドリングは最小限です。実際のアプリケーションでは、より堅牢なエラーチェックが必要です。
